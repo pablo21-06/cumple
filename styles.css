@@ -1,0 +1,1575 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+/* Efecto máquina de escribir */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    0%, 50% { border-right-color: transparent; }
+    51%, 100% { border-right-color: white; }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typewriter 3s steps(40, end), blinkCursor 1s step-end infinite;
+}
+
+.typewriter-poem {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.typewriter-poem.show {
+    opacity: 1;
+}
+
+/* Animación para cada verso del poema */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translate(-150%, -50%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* Página de bienvenida */
+.welcome-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef, #fad0c4);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hearts::before,
+.hearts::after {
+    content: '💖';
+    position: absolute;
+    font-size: 2rem;
+    animation: sparkle 3s infinite;
+}
+
+.hearts::before {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.hearts::after {
+    top: 60%;
+    right: 20%;
+    animation-delay: 1.5s;
+}
+
+.welcome-title {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    /* Aplicar efecto typewriter */
+    overflow: hidden;
+    border-right: 3px solid white;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    animation: typewriter 3s steps(40, end) 0.5s both, blinkCursor 1s step-end infinite 3.5s;
+}
+
+.welcome-button {
+    background: linear-gradient(45deg, #ff6b9d, #c44569, #ff9a9e);
+    color: white;
+    border: none;
+    padding: 25px 45px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+    animation: fadeInUp 1.5s ease-out 0.5s both;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+}
+
+.welcome-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    background: linear-gradient(45deg, #ff9a9e, #ff6b9d, #c44569);
+}
+
+/* Página principal con carrusel */
+.main-page {
+    display: none;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.carousel-container {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 350px;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    animation: slideInLeft 1s ease-out;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* Fotos reales con efectos opcionales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+/* Efecto máquina de escribir */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    0%, 50% { border-right-color: transparent; }
+    51%, 100% { border-right-color: white; }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid white;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typewriter 3s steps(40, end), blinkCursor 1s step-end infinite;
+}
+
+.typewriter-poem {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.typewriter-poem.show {
+    opacity: 1;
+}
+
+/* Animación para cada verso del poema */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translate(-150%, -50%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* Página de bienvenida */
+.welcome-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: linear-gradient(135deg, #ff9a9e, #fecfef, #fad0c4);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hearts::before,
+.hearts::after {
+    content: '💖';
+    position: absolute;
+    font-size: 2rem;
+    animation: sparkle 3s infinite;
+}
+
+.hearts::before {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.hearts::after {
+    top: 60%;
+    right: 20%;
+    animation-delay: 1.5s;
+}
+
+.welcome-title {
+    font-size: 3.5rem;
+    color: #fff;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    /* Aplicar efecto typewriter */
+    overflow: hidden;
+    border-right: 3px solid white;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    animation: typewriter 3s steps(40, end) 0.5s both, blinkCursor 1s step-end infinite 3.5s;
+}
+
+.welcome-button {
+    background: linear-gradient(45deg, #ff6b9d, #c44569, #ff9a9e);
+    color: white;
+    border: none;
+    padding: 25px 45px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+    animation: fadeInUp 1.5s ease-out 0.5s both;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+}
+
+.welcome-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    background: linear-gradient(45deg, #ff9a9e, #ff6b9d, #c44569);
+}
+
+/* Página principal con carrusel */
+.main-page {
+    display: none;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.carousel-container {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 350px;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    animation: slideInLeft 1s ease-out;
+    border: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+/* Fotos reales con efectos opcionales */
+.slide1 { 
+    background-image: url('IMAGES/FOTO1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide2 { 
+    background-image: url('IMAGES/FOTO2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide3 { 
+    background-image: url('IMAGES/FOTO3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide4 { 
+    background-image: url('IMAGES/FOTO4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide5 { 
+    background-image: url('IMAGES/FOTO5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide7 { 
+    background-image: url('IMAGES/FOTO7.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide8 { 
+    background-image: url('IMAGES/FOTO8.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide9 { 
+    background-image: url('IMAGES/FOTO9.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide10 { 
+    background-image: url('IMAGES/FOTO10.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide11 { 
+    background-image: url('IMAGES/FOTO11.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide12 { 
+    background-image: url('IMAGES/FOTO12.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.slide113 { 
+    background-image: url('IMAGES/FOTO13.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Efecto de transición suave para las fotos */
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Filtro opcional para uniformidad */
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* Mensaje y poema */
+.message-container {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
+    animation: slideInRight 1s ease-out 0.5s both;
+}
+
+.poem {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.poem h2 {
+    color: #c44569;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.poem p {
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: center;
+    font-style: italic;
+}
+
+.signature {
+    margin-top: 30px !important;
+    color: #c44569 !important;
+    font-size: 1rem !important;
+    font-style: normal !important;
+}
+
+/* Corazones flotantes */
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.heart:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    top: 20%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.heart:nth-child(3) {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(4) {
+    bottom: 10%;
+    right: 25%;
+    animation-delay: 0.5s;
+}
+
+.heart:nth-child(5) {
+    top: 60%;
+    left: 5%;
+    animation-delay: 1.5s;
+}
+
+/* Responsive Design */
+
+/* Tablets grandes y laptops pequeñas */
+@media (max-width: 1024px) {
+    .welcome-title {
+        font-size: 3rem;
+    }
+    
+    .carousel-container {
+        width: 380px;
+        height: 300px;
+        left: 35%;
+    }
+    
+    .message-container {
+        width: 45%;
+        right: 3%;
+    }
+    
+    .poem {
+        padding: 30px;
+    }
+    
+    .poem h2 {
+        font-size: 1.6rem;
+    }
+    
+    .poem p {
+        font-size: 1rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        /* Ajustar typewriter para tablets */
+        animation: typewriter 2.5s steps(35, end) 0.5s both, blinkCursor 1s step-end infinite 3s;
+    }
+    
+    .welcome-button {
+        font-size: 1.1rem;
+        padding: 20px 35px;
+        margin: 0 20px;
+        text-align: center;
+    }
+    
+    .main-page {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+        padding: 20px 0;
+    }
+    
+    .carousel-container {
+        width: 350px;
+        height: 280px;
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin: 20px auto;
+        animation: fadeInUp 1s ease-out;
+    }
+    
+    .message-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 90%;
+        max-width: 500px;
+        margin: 20px auto;
+        transform: none;
+        animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    
+    .poem {
+        padding: 25px;
+    }
+    
+    .poem h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .poem p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+    
+    .signature {
+        margin-top: 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Ajustar corazones flotantes para tablets */
+    .heart {
+        font-size: 1.5rem;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 0 20px;
+        text-align: center;
+        /* Typewriter más rápido en móviles */
+        animation: typewriter 2s steps(30, end) 0.5s both, blinkCursor 1s step-end infinite 2.5s;
+    }
+    
+    .welcome-button {
+        font-size: 1rem;
+        padding: 18px 25px;
+        margin: 0 15px;
+        line-height: 1.3;
+    }
+    
+    .carousel-container {
+        width: 90%;
+        max-width: 300px;
+        height: 240px;
+        margin: 15px auto;
+    }
+    
+    .message-container {
+        width: 95%;
+        margin: 15px auto;
+    }
+    
+    .poem {
+        padding: 20px;
+        border-radius: 15px;
+    }
+    
+    .poem h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    
+    .poem p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+    
+    .signature {
+        margin-top: 15px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Corazones más pequeños en móviles */
+    .heart {
+        font-size: 1.2rem;
+    }
+    
+    /* Ajustar padding del body en móviles */
+    .main-page {
+        padding: 10px 0;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 360px) {
+    .welcome-title {
+        font-size: 1.8rem;
+        padding: 0 15px;
+        /* Typewriter aún más rápido */
+        animation: typewriter 1.8s steps(25, end) 0.5s both, blinkCursor 1s step-end infinite 2.3s;
+    }
+    
+    .welcome-button {
+        font-size: 0.9rem;
+        padding: 15px 20px;
+        margin: 0 10px;
+    }
+    
+    .carousel-container {
+        width: 95%;
+        max-width: 280px;
+        height: 220px;
+    }
+    
+    .message-container {
+        width: 98%;
+    }
+    
+    .poem {
+        padding: 15px;
+    }
+    
+    .poem h2 {
+        font-size: 1.2rem;
+    }
+    
+    .poem p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .signature {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* Orientación horizontal en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main-page {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+    }
+    
+    .carousel-container {
+        width: 45%;
+        height: 70vh;
+        margin: 0;
+    }
+    
+    .message-container {
+        width: 50%;
+        height: 80vh;
+        overflow-y: auto;
+        margin: 0;
+    }
+    
+    .poem {
+        padding: 15px;
+    }
+    
+    .poem h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .poem p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1440px) {
+    .welcome-title {
+        font-size: 4rem;
+    }
+    
+    .welcome-button {
+        font-size: 1.4rem;
+        padding: 30px 50px;
+    }
+    
+    .carousel-container {
+        width: 500px;
+        height: 400px;
+    }
+    
+    .message-container {
+        width: 35%;
+    }
+    
+    .poem {
+        padding: 50px;
+    }
+    
+    .poem h2 {
+        font-size: 2rem;
+    }
+    
+    .poem p {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Reproductor de Spotify FIJO - Siempre visible */
+.spotify-container-fixed {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    max-width: 90vw;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    padding: 8px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideUpFromBottom 1s ease-out 2s both;
+}
+
+.spotify-container-fixed iframe {
+    border-radius: 12px;
+    height: 152px;
+}
+
+/* Animación para que aparezca desde abajo */
+@keyframes slideUpFromBottom {
+    from {
+        transform: translateX(-50%) translateY(200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive para Spotify player fijo */
+@media (max-width: 768px) {
+    .spotify-container-fixed {
+        width: 95%;
+        bottom: 15px;
+        padding: 6px;
+    }
+    
+    .spotify-container-fixed iframe {
+        height: 132px;
+    }
+}
+
+@media (max-width: 480px) {
+    .spotify-container-fixed {
+        width: 98%;
+        bottom: 10px;
+        padding: 4px;
+    }
+    
+    .spotify-container-fixed iframe {
+        height: 112px;
+    }
+}
+
+/* Occultar el reproductor temporal de Spotify */
+.spotify-container-fixed {
+    display: none !important;
+}
+
+.spotify-container {
+    display: none !important;
+}
+
+/* Control de música */
+.music-control-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    font-family: 'Georgia', serif;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: slideInFromRight 1s ease-out 3s both;
+}
+
+.music-control-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+    background: linear-gradient(45deg, #c44569, #ff6b9d);
+}
+
+.music-control-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Animación para que aparezca desde la derecha */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive para el botón de música */
+@media (max-width: 768px) {
+    .music-control-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-control-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 14px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+    .poem {
+        background: rgba(30, 30, 30, 0.95);
+        color: #fff;
+    }
+    
+    .poem h2 {
+        color: #ff9a9e;
+    }
+    
+    .poem p {
+        color: #f0f0f0;
+    }
+    
+    .signature {
+        color: #ff9a9e !important;
+    }
+    
+    .music-control-btn {
+        background: linear-gradient(45deg, #444, #666);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .music-control-btn:hover {
+        background: linear-gradient(45deg, #666, #444);
+    }
+}
+
+/* Efecto de transición suave para las fotos */
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Filtro opcional para uniformidad */
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* Mensaje y poema */
+.message-container {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    transform: translateY(-50%);
+    width: 40%;
+    animation: slideInRight 1s ease-out 0.5s both;
+}
+
+.poem {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.poem h2 {
+    color: #c44569;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.poem p {
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: center;
+    font-style: italic;
+}
+
+.signature {
+    margin-top: 30px !important;
+    color: #c44569 !important;
+    font-size: 1rem !important;
+    font-style: normal !important;
+}
+
+/* Corazones flotantes */
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.heart:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    top: 20%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.heart:nth-child(3) {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(4) {
+    bottom: 10%;
+    right: 25%;
+    animation-delay: 0.5s;
+}
+
+.heart:nth-child(5) {
+    top: 60%;
+    left: 5%;
+    animation-delay: 1.5s;
+}
+
+/* Responsive Design */
+
+/* Tablets grandes y laptops pequeñas */
+@media (max-width: 1024px) {
+    .welcome-title {
+        font-size: 3rem;
+    }
+    
+    .carousel-container {
+        width: 380px;
+        height: 300px;
+        left: 35%;
+    }
+    
+    .message-container {
+        width: 45%;
+        right: 3%;
+    }
+    
+    .poem {
+        padding: 30px;
+    }
+    
+    .poem h2 {
+        font-size: 1.6rem;
+    }
+    
+    .poem p {
+        font-size: 1rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        /* Ajustar typewriter para tablets */
+        animation: typewriter 2.5s steps(35, end) 0.5s both, blinkCursor 1s step-end infinite 3s;
+    }
+    
+    .welcome-button {
+        font-size: 1.1rem;
+        padding: 20px 35px;
+        margin: 0 20px;
+        text-align: center;
+    }
+    
+    .main-page {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: auto;
+        padding: 20px 0;
+    }
+    
+    .carousel-container {
+        width: 350px;
+        height: 280px;
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin: 20px auto;
+        animation: fadeInUp 1s ease-out;
+    }
+    
+    .message-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 90%;
+        max-width: 500px;
+        margin: 20px auto;
+        transform: none;
+        animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    
+    .poem {
+        padding: 25px;
+    }
+    
+    .poem h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .poem p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+    
+    .signature {
+        margin-top: 20px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Ajustar corazones flotantes para tablets */
+    .heart {
+        font-size: 1.5rem;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 0 20px;
+        text-align: center;
+        /* Typewriter más rápido en móviles */
+        animation: typewriter 2s steps(30, end) 0.5s both, blinkCursor 1s step-end infinite 2.5s;
+    }
+    
+    .welcome-button {
+        font-size: 1rem;
+        padding: 18px 25px;
+        margin: 0 15px;
+        line-height: 1.3;
+    }
+    
+    .carousel-container {
+        width: 90%;
+        max-width: 300px;
+        height: 240px;
+        margin: 15px auto;
+    }
+    
+    .message-container {
+        width: 95%;
+        margin: 15px auto;
+    }
+    
+    .poem {
+        padding: 20px;
+        border-radius: 15px;
+    }
+    
+    .poem h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    
+    .poem p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+    
+    .signature {
+        margin-top: 15px !important;
+        font-size: 0.85rem !important;
+    }
+    
+    /* Corazones más pequeños en móviles */
+    .heart {
+        font-size: 1.2rem;
+    }
+    
+    /* Ajustar padding del body en móviles */
+    .main-page {
+        padding: 10px 0;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 360px) {
+    .welcome-title {
+        font-size: 1.8rem;
+        padding: 0 15px;
+        /* Typewriter aún más rápido */
+        animation: typewriter 1.8s steps(25, end) 0.5s both, blinkCursor 1s step-end infinite 2.3s;
+    }
+    
+    .welcome-button {
+        font-size: 0.9rem;
+        padding: 15px 20px;
+        margin: 0 10px;
+    }
+    
+    .carousel-container {
+        width: 95%;
+        max-width: 280px;
+        height: 220px;
+    }
+    
+    .message-container {
+        width: 98%;
+    }
+    
+    .poem {
+        padding: 15px;
+    }
+    
+    .poem h2 {
+        font-size: 1.2rem;
+    }
+    
+    .poem p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .signature {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* Orientación horizontal en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main-page {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+    }
+    
+    .carousel-container {
+        width: 45%;
+        height: 70vh;
+        margin: 0;
+    }
+    
+    .message-container {
+        width: 50%;
+        height: 80vh;
+        overflow-y: auto;
+        margin: 0;
+    }
+    
+    .poem {
+        padding: 15px;
+    }
+    
+    .poem h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .poem p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1440px) {
+    .welcome-title {
+        font-size: 4rem;
+    }
+    
+    .welcome-button {
+        font-size: 1.4rem;
+        padding: 30px 50px;
+    }
+    
+    .carousel-container {
+        width: 500px;
+        height: 400px;
+    }
+    
+    .message-container {
+        width: 35%;
+    }
+    
+    .poem {
+        padding: 50px;
+    }
+    
+    .poem h2 {
+        font-size: 2rem;
+    }
+    
+    .poem p {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Reproductor de Spotify FIJO - Siempre visible */
+.spotify-container-fixed {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    max-width: 90vw;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    padding: 8px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideUpFromBottom 1s ease-out 2s both;
+}
+
+.spotify-container-fixed iframe {
+    border-radius: 12px;
+    height: 152px;
+}
+
+/* Animación para que aparezca desde abajo */
+@keyframes slideUpFromBottom {
+    from {
+        transform: translateX(-50%) translateY(200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive para Spotify player fijo */
+@media (max-width: 768px) {
+    .spotify-container-fixed {
+        width: 95%;
+        bottom: 15px;
+        padding: 6px;
+    }
+    
+    .spotify-container-fixed iframe {
+        height: 132px;
+    }
+}
+
+@media (max-width: 480px) {
+    .spotify-container-fixed {
+        width: 98%;
+        bottom: 10px;
+        padding: 4px;
+    }
+    
+    .spotify-container-fixed iframe {
+        height: 112px;
+    }
+}
+
+/* Occultar el reproductor temporal */
+.spotify-container {
+    display: none !important;
+}
+
+/* Ya no necesitamos el botón de música, pero lo dejamos por si acaso */
+.music-control-btn {
+    display: none !important;
+}
+
+/* Para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+    .poem {
+        background: rgba(30, 30, 30, 0.95);
+        color: #fff;
+    }
+    
+    .poem h2 {
+        color: #ff9a9e;
+    }
+    
+    .poem p {
+        color: #f0f0f0;
+    }
+    
+    .signature {
+        color: #ff9a9e !important;
+    }
+    
+    .music-control-btn {
+        background: linear-gradient(45deg, #444, #666);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .music-control-btn:hover {
+        background: linear-gradient(45deg, #666, #444);
+    }
+}
